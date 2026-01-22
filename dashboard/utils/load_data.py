@@ -10,9 +10,7 @@ import re
 
 import pandas as pd
 
-RUN_PIPELINE_COMMAND = (
-    "python src/run_pipeline.py --waves 12 --sample_size 25000 --seed 42"
-)
+DATA_BOOTSTRAP_COMMAND = "python scripts/bootstrap_demo_data.py"
 
 
 @dataclass(frozen=True)
@@ -172,7 +170,7 @@ def _load_dataset(spec: DatasetSpec, base_path: Path) -> tuple[Optional[pd.DataF
     if not csv_path.exists():
         return None, (
             f"Missing {spec.name} data at '{spec.relative_path}'. "
-            f"Run `{RUN_PIPELINE_COMMAND}` to regenerate survey outputs."
+            f"Run `{DATA_BOOTSTRAP_COMMAND}` to seed demo-ready CSVs."
         )
     try:
         parse_dates = list(spec.parse_dates) if spec.parse_dates else None
@@ -272,7 +270,7 @@ __all__ = [
     "DataBundle",
     "DatasetSpec",
     "DATASET_SPECS",
-    "RUN_PIPELINE_COMMAND",
+    "DATA_BOOTSTRAP_COMMAND",
     "get_latest_wave",
     "infer_latest_wave",
     "latest_wave_summary",

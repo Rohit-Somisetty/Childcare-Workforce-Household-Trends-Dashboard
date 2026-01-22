@@ -6,7 +6,7 @@ import streamlit as st
 
 from utils.formatters import NA_TEXT, format_ci, format_num, format_pct, safe_delta
 from utils.insights import compute_kpis, compute_top_insights
-from utils.load_data import RUN_PIPELINE_COMMAND, load_all_data
+from utils.load_data import DATA_BOOTSTRAP_COMMAND, load_all_data
 
 HOUSEHOLD_KPIS = [
     {"indicator": "stress_mean", "label": "Avg. stress", "kind": "num"},
@@ -63,7 +63,7 @@ bundle = load_all_data()
 if bundle.errors:
     st.warning(
         "Some survey outputs are missing. Run "
-        f"`{RUN_PIPELINE_COMMAND}` to regenerate the required CSV exports."
+        f"`{DATA_BOOTSTRAP_COMMAND}` to regenerate the required CSV exports."
     )
     for name, error in bundle.errors.items():
         st.caption(f"• {name}: {error}")

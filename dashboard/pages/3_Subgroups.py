@@ -1,5 +1,3 @@
-st.caption("Dynamic bar charts + sortable tables will land here shortly.")
-st.info("Hang tight while subgroup indicators are wired to the new data loader.")
 """Interactive subgroup comparisons for households and providers."""
 
 from __future__ import annotations
@@ -12,7 +10,10 @@ import streamlit as st
 
 from utils.filters import filter_latest_wave, indicator_kind
 from utils.formatters import format_ci, format_num, format_pct
-from utils.load_data import RUN_PIPELINE_COMMAND, load_all_data
+from utils.load_data import DATA_BOOTSTRAP_COMMAND, load_all_data
+
+st.caption("Dynamic bar charts + sortable tables will land here shortly.")
+st.info("Hang tight while subgroup indicators are wired to the new data loader.")
 
 FRAME_CONFIG: Dict[str, Dict[str, List[dict]]] = {
 	"household": {
@@ -75,7 +76,7 @@ bundle = load_all_data()
 if bundle.errors:
 	st.warning(
 		"Some survey outputs are missing. Run "
-		f"`{RUN_PIPELINE_COMMAND}` to regenerate the required CSV exports."
+		f"`{DATA_BOOTSTRAP_COMMAND}` to regenerate the required CSV exports."
 	)
 	for name, error in bundle.errors.items():
 		st.caption(f"• {name}: {error}")

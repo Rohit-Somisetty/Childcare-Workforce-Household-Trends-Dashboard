@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+data/outputs/
+reports/
+docs/demo_dashboard/figures/*.png
+docs/demo_dashboard/brief_latest.md
+docs/demo_dashboard/factsheet_latest.html

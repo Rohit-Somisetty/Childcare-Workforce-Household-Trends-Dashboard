@@ -1,5 +1,3 @@
-st.caption("Interactive trend lines with confidence intervals will be available soon.")
-st.info("Use the Overview page to confirm data availability while build-out continues.")
 """Interactive trends page with CI ribbons."""
 
 from __future__ import annotations
@@ -11,7 +9,10 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from utils.formatters import format_num, format_pct
-from utils.load_data import RUN_PIPELINE_COMMAND, load_all_data
+from utils.load_data import DATA_BOOTSTRAP_COMMAND, load_all_data
+
+st.caption("Interactive trend lines with confidence intervals will be available soon.")
+st.info("Use the Overview page to confirm data availability while build-out continues.")
 
 FRAME_INDICATORS: Dict[str, List[dict]] = {
 	"household": [
@@ -71,7 +72,7 @@ bundle = load_all_data()
 if bundle.errors:
 	st.warning(
 		"Some survey outputs are missing. Run "
-		f"`{RUN_PIPELINE_COMMAND}` to regenerate the required CSVs."
+		f"`{DATA_BOOTSTRAP_COMMAND}` to regenerate the required CSVs."
 	)
 	for name, error in bundle.errors.items():
 		st.caption(f"• {name}: {error}")

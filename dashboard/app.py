@@ -6,7 +6,7 @@ import streamlit as st
 
 from utils.formatters import format_wave_heading
 from utils.load_data import (
-    RUN_PIPELINE_COMMAND,
+    DATA_BOOTSTRAP_COMMAND,
     infer_latest_wave,
     load_all_data,
 )
@@ -29,7 +29,7 @@ def main() -> None:
     if data_bundle.errors:
         st.warning(
             "Some survey outputs are missing. Generate them via "
-            f"`{RUN_PIPELINE_COMMAND}` before exploring the full dashboard."
+            f"`{DATA_BOOTSTRAP_COMMAND}` before exploring the full dashboard."
         )
         for dataset_name, error in data_bundle.errors.items():
             st.caption(f"• {dataset_name}: {error}")
